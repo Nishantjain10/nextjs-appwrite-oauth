@@ -2,6 +2,19 @@
 
 A simple and clean implementation of OAuth2 authentication using Appwrite in a Next.js application. This project demonstrates how to handle OAuth2 flows with multiple providers including Amazon, Discord, Google, GitHub, and Notion.
 
+## 🌟 Available Implementations
+
+This repository has two implementations:
+- `main` branch: Client-side OAuth implementation
+- `feat/ssr-oauth` branch: Server-side rendering (SSR) implementation
+
+### SSR Implementation (Current Branch)
+The SSR implementation uses `node-appwrite` to handle OAuth flows server-side, providing better security and reliability. It includes:
+- Server-side token generation
+- Secure session handling
+- API routes for OAuth flow
+- Type-safe provider handling
+
 ## 🚀 Features
 
 - ✨ Multiple OAuth Providers (Amazon, Discord, Google, GitHub, Notion)
@@ -10,6 +23,7 @@ A simple and clean implementation of OAuth2 authentication using Appwrite in a N
 - 📱 Responsive Design
 - 🔄 Session Management
 - 🎨 Clean UI
+- 🖥️ SSR Support
 
 ## 📋 Prerequisites
 
@@ -17,13 +31,15 @@ A simple and clean implementation of OAuth2 authentication using Appwrite in a N
 - npm or yarn
 - Appwrite Account
 - OAuth Provider Credentials
+- Appwrite API Key (for SSR)
 
 ## 🛠️ Setup & Installation
 
-1. **Clone the repository**
+1. **Clone the repository and switch to SSR branch**
    ```bash
    git clone https://github.com/yourusername/nextjs-appwrite-oauth
    cd nextjs-appwrite-oauth
+   git checkout feat/ssr-oauth
    ```
 
 2. **Install dependencies**
@@ -38,10 +54,12 @@ A simple and clean implementation of OAuth2 authentication using Appwrite in a N
    cp .env.example .env.local
    ```
 
-   Update the following variables in `.env.local`:
+   Required variables:
    ```env
    NEXT_PUBLIC_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
-   NEXT_PUBLIC_APPWRITE_PROJECT_ID=your-project-id-here  # Get this from Appwrite Console
+   NEXT_PUBLIC_APPWRITE_PROJECT_ID=your-project-id
+   APPWRITE_API_KEY=your-api-key
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
    ```
 
 4. **Start the development server**
@@ -55,22 +73,34 @@ A simple and clean implementation of OAuth2 authentication using Appwrite in a N
 .
 ├── src/
 │   ├── pages/
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       ├── [provider].ts   # OAuth initialization
+│   │   │       └── callback.ts     # OAuth callback handling
 │   │   ├── auth/
-│   │   │   ├── callback.tsx    # OAuth callback handler
-│   │   │   └── login.tsx       # Login page
-│   │   ├── dashboard.tsx       # Protected dashboard
-│   │   ├── _app.tsx           # App component
-│   │   └── index.tsx          # Home page
+│   │   │   ├── callback.tsx        # Callback page
+│   │   │   └── login.tsx           # Login page
+│   │   ├── dashboard.tsx           # Protected dashboard
+│   │   ├── _app.tsx               # App component
+│   │   └── index.tsx              # Home page
 │   ├── styles/
-│   │   └── Login.module.css   # Login styles
+│   │   └── Login.module.css       # Login styles
 │   └── types/
-│       └── oauth.ts           # OAuth types
-├── .env.example              # Example environment variables
-├── .env.local                # Environment variables (git-ignored)
-├── next.config.js           # Next.js configuration
-├── package.json             # Project dependencies
-└── tsconfig.json           # TypeScript configuration
+│       └── oauth.ts               # OAuth types
+├── .env.example                   # Example environment variables
+├── .env.local                     # Environment variables (git-ignored)
+└── [other config files...]
 ```
+
+## 🔐 OAuth Flow (SSR)
+
+1. User clicks "Login with [Provider]"
+2. Frontend calls API route `/api/auth/[provider]`
+3. Server generates OAuth URL using node-appwrite
+4. User is redirected to provider's login page
+5. After authentication, provider redirects to callback URL
+6. Server creates session and sets secure cookie
+7. User is redirected to dashboard
 
 ## 🔐 OAuth Flow
 

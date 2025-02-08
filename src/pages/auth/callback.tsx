@@ -1,33 +1,28 @@
-import { Client, Account } from 'appwrite';
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const CallbackPage: NextPage = () => {
     const router = useRouter();
+    const { secret, userId } = router.query;
 
     useEffect(() => {
-        const client = new Client()
-            .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1')
-            .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || '');
+        if (!secret || !userId) return;
 
-        const account = new Account(client);
-
-        // Get session information after OAuth redirect
-        account.getSession('current')
-            .then(session => {
-                console.log('Session details:', {
-                    provider: session.provider,
-                    providerUid: session.providerUid,
-                    providerAccessToken: session.providerAccessToken
-                });
-                router.push('/dashboard');
+        // Call our API route instead of directly using the client SDK
+        fetch(`/api/auth/callback?userId=${userId}&secret=${secret}`)
+            .then(response => {
+                if (response.ok) {
+                    router.push('/dashboard');
+                } else {
+                    throw new Error('Failed to create session');
+                }
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('Session error:', error);
                 router.push('/auth/login');
             });
-    }, [router]);
+    }, [router, secret, userId]);
 
     return (
         <div style={{ textAlign: 'center', padding: '2rem' }}>
@@ -37,3 +32,4 @@ const CallbackPage: NextPage = () => {
 };
 
 export default CallbackPage;
+

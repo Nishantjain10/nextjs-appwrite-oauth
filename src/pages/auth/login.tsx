@@ -1,43 +1,29 @@
-import { Client, Account } from 'appwrite';
 import { NextPage } from "next";
 import styles from '@/styles/Login.module.css';
 import { OAuthProvider } from '@/types/oauth';
 import { useCallback } from 'react';
 
 const LoginPage: NextPage = () => {
-    // Get the base URL dynamically
-    const baseUrl = typeof window !== 'undefined' 
-        ? `${window.location.protocol}//${window.location.host}`
-        : 'http://localhost:3000';
-
     const handleOAuthLogin = useCallback(async (provider: OAuthProvider) => {
         try {
-            const client = new Client()
-                .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1')
-                .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || '');
+            // Call our API route with the correct provider
+            const response = await fetch(`/api/auth/${provider}`);
+            const data = await response.json();
+            
+            if (data.error) {
+                throw new Error(data.error);
+            }
 
-            const account = new Account(client);
+            if (!data.url) {
+                throw new Error('No URL returned from server');
+            }
 
-            // For available OAuth providers and their scopes,
-            // check src/types/oauth.ts
-            const scopes = {
-                [OAuthProvider.Amazon]: ['profile'],
-                [OAuthProvider.Discord]: ['identify', 'email'],
-                [OAuthProvider.Notion]: ['basic'],
-                [OAuthProvider.Google]: ['profile', 'email', 'openid'],
-                [OAuthProvider.GitHub]: ['user', 'user:email']
-            };
-
-            await account.createOAuth2Session(
-                provider,
-                `${baseUrl}/auth/callback`,
-                `${baseUrl}/auth/login`,
-                scopes[provider]
-            );
+            // Redirect to OAuth provider
+            window.location.href = data.url;
         } catch (error) {
             console.error('Login error:', error);
         }
-    }, [baseUrl]);
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -58,3 +44,4 @@ const LoginPage: NextPage = () => {
 };
 
 export default LoginPage;
+
