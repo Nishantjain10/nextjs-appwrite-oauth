@@ -28,7 +28,7 @@ This repository has two implementations:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/nextjs-appwrite-oauth
+   git clone https://github.com/nishantjain10/nextjs-appwrite-oauth
    cd nextjs-appwrite-oauth
    ```
 
