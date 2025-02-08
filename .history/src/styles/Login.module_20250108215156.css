@@ -1,0 +1,36 @@
+.container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loginButton {
+    background-color: #24292e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.loginButton:hover {
+    background-color: #2f363d;
+}
+
+.loginButton:disabled {
+    background-color: #6e7681;
+    cursor: not-allowed;
+}
+
+.error {
+    color: #cf222e;
+    background-color: #ffebe9;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+} 
