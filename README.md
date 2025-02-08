@@ -18,6 +18,12 @@ A simple and clean implementation of OAuth2 authentication using Appwrite in a N
 - Appwrite Account
 - OAuth Provider Credentials
 
+## 🌟 Available Implementations
+
+This repository has two implementations:
+- `main` branch: Client-side OAuth implementation
+- `feat/ssr-oauth` branch: Server-side rendering (SSR) implementation
+
 ## 🛠️ Setup & Installation
 
 1. **Clone the repository**
