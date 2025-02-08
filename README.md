@@ -249,14 +249,14 @@ For support:
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/yourusername">
-        <img src="https://github.com/yourusername.png" width="100px;" alt=""/>
+      <a href="https://github.com/nishantjain10">
+        <img src="https://github.com/nishantjain10.png" width="50px;" alt=""/>
         <br />
-        <sub><b>Your Name</b></sub>
+        <b>Nishant Jain</b>
       </a>
     </td>
   </tr>
 </table>
 
 ---
-Built with ❤️ using Next.js and Appwrite 
+Built with ❤️ using Next.js and Appwrite
