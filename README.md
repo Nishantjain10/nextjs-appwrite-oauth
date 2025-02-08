@@ -202,10 +202,6 @@ The login page is responsive and works on:
    ```
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - [Appwrite](https://appwrite.io/) for the backend service
@@ -216,7 +212,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📫 Support
 
 For support:
-- Open an [issue](https://github.com/yourusername/nextjs-appwrite-oauth/issues)
+- Open an [issue](https://github.com/nishantjain10/nextjs-appwrite-oauth/issues)
 - Check [Appwrite Documentation](https://appwrite.io/docs)
 - Join [Appwrite Discord](https://discord.gg/appwrite)
 
@@ -225,10 +221,10 @@ For support:
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/yourusername">
-        <img src="https://github.com/yourusername.png" width="100px;" alt=""/>
+      <a href="https://github.com/nishantjain10">
+        <img src="https://github.com/nishantjain10.png" width="50px;" alt=""/>
         <br />
-        <sub><b>Your Name</b></sub>
+        <b>Nishant Jain</b>
       </a>
     </td>
   </tr>
