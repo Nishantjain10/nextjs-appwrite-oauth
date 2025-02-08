@@ -1,10 +1,17 @@
 .container {
-    max-width: 400px;
+    max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttonGrid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .loginButton {
@@ -16,6 +23,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
+    width: 100%;
 }
 
 .loginButton:hover {
